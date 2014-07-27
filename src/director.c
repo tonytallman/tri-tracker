@@ -2,15 +2,15 @@
 #include "splashscreen.h"
 
 Window *_splashScreenWindow;
-bool _isInSplashScreen;
 AppTimer *_splashScreenTimer;
+bool _splashScreenHasBeenDismissed;
 
 void DismissSplashScreen() {
-  if (_isInSplashScreen) {
-    _isInSplashScreen = false;
-    window_stack_pop(false);
-    DestroySplashScreen(_splashScreenWindow);
+  if (!_splashScreenHasBeenDismissed) {
+    _splashScreenHasBeenDismissed = true;
     app_timer_cancel(_splashScreenTimer);
+    window_stack_remove(_splashScreenWindow, false);
+    DestroySplashScreen(_splashScreenWindow);
   }
 }
 
@@ -18,20 +18,12 @@ void SplashScreenTimerCallback(void *data) {
   DismissSplashScreen();
 }
 
-void StartSplashScreenTimer() {
-  _splashScreenTimer = app_timer_register(3000, SplashScreenTimerCallback, NULL);
-}
-
 void DirectorStart() {
   _splashScreenWindow = CreateSplashScreen(DismissSplashScreen);
   window_stack_push(_splashScreenWindow, false);
-  _isInSplashScreen = true;
-  StartSplashScreenTimer();
+  _splashScreenTimer = app_timer_register(3000, SplashScreenTimerCallback, NULL);
 }
 
 void DirectorEnd() {
-  if (_isInSplashScreen) {
-    _isInSplashScreen = false;
-    DestroySplashScreen(_splashScreenWindow);
-  }
+  DismissSplashScreen();
 }
