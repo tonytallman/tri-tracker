@@ -1,0 +1,25 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "ttgstudios@live.com",
+    "longName": "tri-tracker",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/SplashScreen.png",
+                "name": "IMAGE_SPLASHSCREEN",
+                "type": "png"
+            }
+        ]
+    },
+    "shortName": "tri-tracker",
+    "uuid": "22a96283-9f9d-4818-b92b-0891a270cad7",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
