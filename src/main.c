@@ -1,16 +1,12 @@
 #include <pebble.h>
-#include "main.h"
-#include "splashscreen.h"
-
-bool _isInSplashScreen;
+#include "director.h"
 
 void init(void) {
-  ShowSplashScreen();
-  _isInSplashScreen = true;
+  DirectorStart();
 }
 
 void deinit(void) {
-  CloseSplashScreen();
+  DirectorEnd();
 }
 
 int main(void) {

@@ -1,9 +1,8 @@
 #ifndef SPLASHSCREEN
 #define SPLASHSCREEN
-
-#include "main.h"
-
-void ShowSplashScreen();
-void CloseSplashScreen();
+#include "common.h"
+  
+Window* CreateSplashScreen(callback doneHandler);
+void DestroySplashScreen(Window *splashScreenWindow);
 
 #endif

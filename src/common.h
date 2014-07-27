@@ -1,5 +1,5 @@
-#ifndef MAIN
-#define MAIN
+#ifndef COMMON
+#define COMMON
 
 typedef void (*callback)();
 

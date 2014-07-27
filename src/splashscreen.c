@@ -1,7 +1,8 @@
 #include <pebble.h>
 #include "textprovider.h"
- 
-Window *_splashScreenWindow;
+#include "splashscreen.h"
+
+callback _splashScreenDoneHandler;
 TextLayer *_instructionsTextLayer;
 BitmapLayer *_splashScreenBitmapLayer;
 GBitmap *_splashScreenImage;
@@ -30,17 +31,32 @@ void SplashScreenUnload(Window *window) {
   gbitmap_destroy(_splashScreenImage);
   bitmap_layer_destroy(_splashScreenBitmapLayer);
 }
+
+void SplashScreenButtonHandler(ClickRecognizerRef recognizer, void *context) {
+  // Dismiss splash screen when any button is pressed.
+  _splashScreenDoneHandler();
+}
+
+void SplashScreenClickConfigProvider(void *context) {
+  window_single_click_subscribe(BUTTON_ID_SELECT, SplashScreenButtonHandler);
+  window_single_click_subscribe(BUTTON_ID_UP, SplashScreenButtonHandler);
+  window_single_click_subscribe(BUTTON_ID_DOWN, SplashScreenButtonHandler);
+}
  
-void ShowSplashScreen(void) {
-  _splashScreenWindow = window_create();
-  window_set_window_handlers(_splashScreenWindow, (WindowHandlers) {
+Window* CreateSplashScreen(callback doneHandler) {
+  _splashScreenDoneHandler = doneHandler;
+  
+  Window *splashScreenWindow = window_create();
+  window_set_window_handlers(splashScreenWindow, (WindowHandlers) {
     .load = SplashScreenLoad,
     .unload = SplashScreenUnload,
   });
 
-  window_stack_push(_splashScreenWindow, false);
+  window_set_click_config_provider(splashScreenWindow, SplashScreenClickConfigProvider);
+
+  return splashScreenWindow;
 }
 
-void CloseSplashScreen(void) {
-  window_destroy(_splashScreenWindow);
+void DestroySplashScreen(Window *splashScreenWindow) {
+  window_destroy(splashScreenWindow);
 }
