@@ -3,6 +3,6 @@
 #include "common.h"
   
 Window* CreateSplashScreen(callback doneHandler);
-void DestroySplashScreen(Window *splashScreenWindow);
+void DisposeSplashScreen(Window *splashScreenWindow);
 
 #endif

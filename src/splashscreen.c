@@ -46,17 +46,17 @@ void SplashScreenClickConfigProvider(void *context) {
 Window* CreateSplashScreen(callback doneHandler) {
   _splashScreenDoneHandler = doneHandler;
   
-  Window *splashScreenWindow = window_create();
-  window_set_window_handlers(splashScreenWindow, (WindowHandlers) {
+  Window *window = window_create();
+  window_set_window_handlers(window, (WindowHandlers) {
     .load = SplashScreenLoad,
     .unload = SplashScreenUnload,
   });
 
-  window_set_click_config_provider(splashScreenWindow, SplashScreenClickConfigProvider);
+  window_set_click_config_provider(window, SplashScreenClickConfigProvider);
 
-  return splashScreenWindow;
+  return window;
 }
 
-void DestroySplashScreen(Window *splashScreenWindow) {
+void DisposeSplashScreen(Window *splashScreenWindow) {
   window_destroy(splashScreenWindow);
 }
