@@ -62,7 +62,7 @@ void MainScreenLoad(Window *window) {
     .select_click = MainScreenMenuItemSelectedHandler,
   });
 
-  // Add it to the window for display
+  menu_layer_set_click_config_onto_window(_mainScreenMenuLayer, window);
   layer_add_child(rootLayer, menu_layer_get_layer(_mainScreenMenuLayer));
 }
 
