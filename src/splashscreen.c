@@ -8,8 +8,15 @@ TextLayer *_instructionsTextLayer;
 BitmapLayer *_splashScreenBitmapLayer;
 GBitmap *_splashScreenImage;
 
+void SplashScreenDisposeTimer() {
+  if (_splashScreenTimer != NULL) {
+    app_timer_cancel(_splashScreenTimer);
+    _splashScreenTimer = NULL;
+  }
+}
+
 void SplashScreenTimerCallback(void *data) {
-  app_timer_cancel(_splashScreenTimer);
+  _splashScreenTimer = NULL;
   _splashScreenDoneHandler();
 }
 
@@ -39,7 +46,7 @@ void SplashScreenUnload(Window *window) {
   gbitmap_destroy(_splashScreenImage);
   bitmap_layer_destroy(_splashScreenBitmapLayer);
   window_destroy(window);
-  app_timer_cancel(_splashScreenTimer);
+  SplashScreenDisposeTimer();
 }
 
 void SplashScreenButtonHandler(ClickRecognizerRef recognizer, void *context) {

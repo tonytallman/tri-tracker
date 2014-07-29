@@ -36,7 +36,8 @@ static void MainScreenDrawRow(GContext* ctx, const Layer *cell_layer, MenuIndex 
 
     case 2:
       title = GetText(TEXT_HistoryMenuItemTitle);
-      subtitle = GetText(TEXT_HistoryMenuItemSubtitle);
+      subtitle = "0 races saved";
+//      subtitle = GetText(TEXT_HistoryMenuItemSubtitle);
       break;
   }
   
