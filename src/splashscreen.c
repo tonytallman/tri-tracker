@@ -2,11 +2,17 @@
 #include "textprovider.h"
 #include "splashscreen.h"
 
+AppTimer *_splashScreenTimer;
 callback _splashScreenDoneHandler;
 TextLayer *_instructionsTextLayer;
 BitmapLayer *_splashScreenBitmapLayer;
 GBitmap *_splashScreenImage;
- 
+
+void SplashScreenTimerCallback(void *data) {
+  app_timer_cancel(_splashScreenTimer);
+  _splashScreenDoneHandler();
+}
+
 void SplashScreenLoad(Window *window) {
   Layer *windowLayer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(windowLayer);
@@ -24,12 +30,16 @@ void SplashScreenLoad(Window *window) {
   text_layer_set_text(_instructionsTextLayer, instructions);
   text_layer_set_text_alignment(_instructionsTextLayer, GTextAlignmentCenter);
   layer_add_child(windowLayer, text_layer_get_layer(_instructionsTextLayer));
+  
+  _splashScreenTimer = app_timer_register(3000, SplashScreenTimerCallback, NULL);
 }
  
 void SplashScreenUnload(Window *window) {
   text_layer_destroy(_instructionsTextLayer);
   gbitmap_destroy(_splashScreenImage);
   bitmap_layer_destroy(_splashScreenBitmapLayer);
+  window_destroy(window);
+  app_timer_cancel(_splashScreenTimer);
 }
 
 void SplashScreenButtonHandler(ClickRecognizerRef recognizer, void *context) {

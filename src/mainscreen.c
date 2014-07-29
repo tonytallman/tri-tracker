@@ -68,6 +68,7 @@ void MainScreenLoad(Window *window) {
 
 void MainScreenUnload(Window *window) {
   menu_layer_destroy(_mainScreenMenuLayer);
+  window_destroy(window);
 }
 
 Window* CreateMainScreen() {
@@ -78,8 +79,4 @@ Window* CreateMainScreen() {
   });
 
   return window;
-}
-
-void DisposeMainScreen(Window *mainScreenWindow) {
-  window_destroy(mainScreenWindow);
 }
