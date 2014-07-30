@@ -1,10 +1,11 @@
 #include <pebble.h>
 #include "textprovider.h"
 #include "splashscreen.h"
+#include "theme.h"
 
 AppTimer *_splashScreenTimer;
 callback _splashScreenDoneHandler;
-TextLayer *_instructionsTextLayer;
+TextLayer *_titleTextLayer;
 BitmapLayer *_splashScreenBitmapLayer;
 GBitmap *_splashScreenImage;
 
@@ -29,20 +30,23 @@ void SplashScreenLoad(Window *window) {
   bitmap_layer_set_bitmap(_splashScreenBitmapLayer, _splashScreenImage);
   layer_add_child(windowLayer, bitmap_layer_get_layer(_splashScreenBitmapLayer));
   
-  GRect instructionsLayerBounds = bounds;
-  instructionsLayerBounds.origin.y = bounds.origin.y + bounds.size.h - 48;
-  instructionsLayerBounds.size.h = 48;
-  _instructionsTextLayer = text_layer_create(instructionsLayerBounds);
-  char *instructions = GetText(TEXT_SPLASHSCREENINSTRUCTIONS);
-  text_layer_set_text(_instructionsTextLayer, instructions);
-  text_layer_set_text_alignment(_instructionsTextLayer, GTextAlignmentCenter);
-  layer_add_child(windowLayer, text_layer_get_layer(_instructionsTextLayer));
+  GRect titleLayerBounds = bounds;
+  int fontSize = GetHeadingFontSize();
+  int borderSize = 10;
+  titleLayerBounds.origin.y = bounds.origin.y + bounds.size.h - fontSize - borderSize;
+  titleLayerBounds.size.h = fontSize;
+  _titleTextLayer = text_layer_create(titleLayerBounds);
+  char *title = GetText(TEXT_Title);
+  text_layer_set_text(_titleTextLayer, title);
+  text_layer_set_text_alignment(_titleTextLayer, GTextAlignmentCenter);
+  text_layer_set_font(_titleTextLayer, GetHeadingFont());
+  layer_add_child(windowLayer, text_layer_get_layer(_titleTextLayer));
   
   _splashScreenTimer = app_timer_register(3000, SplashScreenTimerCallback, NULL);
 }
  
 void SplashScreenUnload(Window *window) {
-  text_layer_destroy(_instructionsTextLayer);
+  text_layer_destroy(_titleTextLayer);
   gbitmap_destroy(_splashScreenImage);
   bitmap_layer_destroy(_splashScreenBitmapLayer);
   window_destroy(window);
