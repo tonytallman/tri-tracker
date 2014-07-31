@@ -3,7 +3,6 @@
 
 typedef enum {
   TEXT_Title,
-  TEXT_SPLASHSCREENINSTRUCTIONS,
   TEXT_StartRaceMenuItemTitle,
   TEXT_StartRaceMenuItemSubtitle,
   TEXT_SettingsMenuItemTitle,

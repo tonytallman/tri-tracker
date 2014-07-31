@@ -7,9 +7,6 @@ char *GetText(TextID textID)
     case TEXT_Title:
       return "tri-tracker";
 
-    case TEXT_SPLASHSCREENINSTRUCTIONS:
-      return "press any button to continue";
-
     case TEXT_StartRaceMenuItemTitle:
       return "start race";
 
@@ -26,7 +23,7 @@ char *GetText(TextID textID)
       return "history";
 
     case TEXT_HistoryMenuItemSubtitle:
-      return NULL;
+      return "0 races saved";
 
     default:
       return "";
