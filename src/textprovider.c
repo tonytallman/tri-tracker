@@ -25,6 +25,12 @@ char *GetText(TextID textID)
     case TEXT_HistoryMenuItemSubtitle:
       return "0 races saved";
 
+    case TEXT_AboutMenuItemTitle:
+      return "about";
+
+    case TEXT_AboutMenuItemSubtitle:
+      return NULL;
+
     default:
       return "";
   }

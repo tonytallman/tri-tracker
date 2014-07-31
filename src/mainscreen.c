@@ -3,13 +3,21 @@
 #include "textprovider.h"
 
 MenuLayer *_mainScreenMenuLayer;
+typedef enum
+{
+  MainScreenMenuItemStartRace = 0,
+  MainScreenMenuItemSettings,
+  MainScreenMenuItemHistory,
+  MainScreenMenuItemAbout,
+  MainScreenMenuItemCount
+} MainScreenMenuItem;
 
 static uint16_t MainScreenGetNumberOfSections(MenuLayer *menu_layer, void *data) {
   return 1;
 }
 
 static uint16_t MainScreenGetNumberOfRows(MenuLayer *menu_layer, uint16_t section_index, void *data) {
-  return 3;
+  return MainScreenMenuItemCount;
 }
 
 static int16_t MainScreenGetHeaderHeight(MenuLayer *menu_layer, uint16_t section_index, void *data) {
@@ -22,21 +30,26 @@ static void MainScreenDrawHeader(GContext* ctx, const Layer *cell_layer, uint16_
 static void MainScreenDrawRow(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
   char *title = NULL;
   char *subtitle = NULL;
-  
+
   switch (cell_index->row) {
-    case 0:
+    case MainScreenMenuItemStartRace:
       title = GetText(TEXT_StartRaceMenuItemTitle);
       subtitle = GetText(TEXT_StartRaceMenuItemSubtitle);
       break;
 
-    case 1:
+    case MainScreenMenuItemSettings:
       title = GetText(TEXT_SettingsMenuItemTitle);
       subtitle = GetText(TEXT_SettingsMenuItemSubtitle);
       break;
 
-    case 2:
+    case MainScreenMenuItemHistory:
       title = GetText(TEXT_HistoryMenuItemTitle);
       subtitle = GetText(TEXT_HistoryMenuItemSubtitle);
+      break;
+    
+    case MainScreenMenuItemAbout:
+      title = GetText(TEXT_AboutMenuItemTitle);
+      subtitle = GetText(TEXT_AboutMenuItemSubtitle);
       break;
   }
   
@@ -44,6 +57,19 @@ static void MainScreenDrawRow(GContext* ctx, const Layer *cell_layer, MenuIndex 
 }
 
 void MainScreenMenuItemSelectedHandler(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
+  switch (cell_index->row) {
+    case MainScreenMenuItemStartRace:
+      break;
+
+    case MainScreenMenuItemSettings:
+      break;
+
+    case MainScreenMenuItemHistory:
+      break;
+    
+    case MainScreenMenuItemAbout:
+      break;
+  }
 }
 
 void MainScreenLoad(Window *window) {
