@@ -11,6 +11,7 @@ typedef enum {
   TEXT_HistoryMenuItemSubtitle,
   TEXT_AboutMenuItemTitle,
   TEXT_AboutMenuItemSubtitle,
+  TEXT_ComingSoon
 } TextID;
 
 char *GetText(TextID textID);

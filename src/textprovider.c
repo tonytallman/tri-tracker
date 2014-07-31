@@ -30,6 +30,9 @@ char *GetText(TextID textID)
 
     case TEXT_AboutMenuItemSubtitle:
       return NULL;
+    
+    case TEXT_ComingSoon:
+      return "coming soon!";
 
     default:
       return "";

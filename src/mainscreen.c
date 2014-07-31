@@ -11,6 +11,10 @@ typedef enum
   MainScreenMenuItemAbout,
   MainScreenMenuItemCount
 } MainScreenMenuItem;
+callback _startRaceHandler;
+callback _settingsHandler;
+callback _historyHandler;
+callback _aboutHandler;
 
 static uint16_t MainScreenGetNumberOfSections(MenuLayer *menu_layer, void *data) {
   return 1;
@@ -59,15 +63,19 @@ static void MainScreenDrawRow(GContext* ctx, const Layer *cell_layer, MenuIndex 
 void MainScreenMenuItemSelectedHandler(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
   switch (cell_index->row) {
     case MainScreenMenuItemStartRace:
+      _startRaceHandler();
       break;
 
     case MainScreenMenuItemSettings:
+      _settingsHandler();
       break;
 
     case MainScreenMenuItemHistory:
+      _historyHandler();
       break;
     
     case MainScreenMenuItemAbout:
+      _aboutHandler();
       break;
   }
 }
@@ -97,7 +105,12 @@ void MainScreenUnload(Window *window) {
   window_destroy(window);
 }
 
-Window* CreateMainScreen() {
+Window* CreateMainScreen(callback startRaceHandler, callback settingsHandler, callback historyHandler, callback aboutHandler) {
+  _startRaceHandler = startRaceHandler;
+  _settingsHandler = settingsHandler;
+  _historyHandler = historyHandler;
+  _aboutHandler = aboutHandler;
+
   Window *window = window_create();
   window_set_window_handlers(window, (WindowHandlers) {
     .load = MainScreenLoad,
