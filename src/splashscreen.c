@@ -5,7 +5,7 @@
 
 AppTimer *_splashScreenTimer;
 callback _splashScreenDoneHandler;
-TextLayer *_titleTextLayer;
+TextLayer *_splashScreenTitleTextLayer;
 BitmapLayer *_splashScreenBitmapLayer;
 GBitmap *_splashScreenImage;
 
@@ -35,18 +35,18 @@ void SplashScreenLoad(Window *window) {
   int borderSize = 10;
   titleLayerBounds.origin.y = bounds.origin.y + bounds.size.h - fontSize - borderSize;
   titleLayerBounds.size.h = fontSize;
-  _titleTextLayer = text_layer_create(titleLayerBounds);
+  _splashScreenTitleTextLayer = text_layer_create(titleLayerBounds);
   char *title = GetText(TEXT_Title);
-  text_layer_set_text(_titleTextLayer, title);
-  text_layer_set_text_alignment(_titleTextLayer, GTextAlignmentCenter);
-  text_layer_set_font(_titleTextLayer, GetHeadingFont());
-  layer_add_child(windowLayer, text_layer_get_layer(_titleTextLayer));
+  text_layer_set_text(_splashScreenTitleTextLayer, title);
+  text_layer_set_text_alignment(_splashScreenTitleTextLayer, GTextAlignmentCenter);
+  text_layer_set_font(_splashScreenTitleTextLayer, GetHeadingFont());
+  layer_add_child(windowLayer, text_layer_get_layer(_splashScreenTitleTextLayer));
   
   _splashScreenTimer = app_timer_register(3000, SplashScreenTimerCallback, NULL);
 }
  
 void SplashScreenUnload(Window *window) {
-  text_layer_destroy(_titleTextLayer);
+  text_layer_destroy(_splashScreenTitleTextLayer);
   gbitmap_destroy(_splashScreenImage);
   bitmap_layer_destroy(_splashScreenBitmapLayer);
   window_destroy(window);

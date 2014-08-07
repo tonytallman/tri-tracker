@@ -3,23 +3,23 @@
 #include "textprovider.h"
 #include "theme.h"
 
-TextLayer *_titleTextLayer;
+TextLayer *_comingSoonTitleTextLayer;
 
 void ComingSoonScreenLoad(Window *window) {
   Layer *windowLayer = window_get_root_layer(window);
   GRect bounds = layer_get_frame(windowLayer);
   
   GRect titleLayerBounds = bounds;
-  _titleTextLayer = text_layer_create(titleLayerBounds);
+  _comingSoonTitleTextLayer = text_layer_create(titleLayerBounds);
   char *title = GetText(TEXT_ComingSoon);
-  text_layer_set_text(_titleTextLayer, title);
-  text_layer_set_text_alignment(_titleTextLayer, GTextAlignmentCenter);
-  text_layer_set_font(_titleTextLayer, GetHeadingFont());
-  layer_add_child(windowLayer, text_layer_get_layer(_titleTextLayer));
+  text_layer_set_text(_comingSoonTitleTextLayer, title);
+  text_layer_set_text_alignment(_comingSoonTitleTextLayer, GTextAlignmentCenter);
+  text_layer_set_font(_comingSoonTitleTextLayer, GetHeadingFont());
+  layer_add_child(windowLayer, text_layer_get_layer(_comingSoonTitleTextLayer));
 }
  
 void ComingSoonScreenUnload(Window *window) {
-  text_layer_destroy(_titleTextLayer);
+  text_layer_destroy(_comingSoonTitleTextLayer);
   window_destroy(window);
 }
  
