@@ -19,8 +19,8 @@ struct RaceDefinitionStruct;
 typedef struct RaceDefinitionStruct RaceDefinition;
 
 RaceDefinition* RaceDefinitionCreateTriathlon(float swimDistanceInKilometers, float bikeDistanceInKilometers, float runDistanceInKilometers);
-void RaceDefinitionAddSegment(RaceDefinition *race, RaceSegmentType type, float segmentDistanceInKilometers);
-int RaceDefinitionGetSegmentCount(RaceDefinition *race);
+void RaceDefinitionDestroy(RaceDefinition *race);
+int RaceDefinitionGetNumberOfSegments(RaceDefinition *race);
 RaceSegment* RaceDefinitionGetRaceSegment(RaceDefinition *race, int segmentNumber);
 
 #endif
