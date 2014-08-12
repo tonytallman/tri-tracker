@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "racedefinition.h"
+#include "distance.h"
 
 struct RaceDefinitionStruct
 {
@@ -7,25 +8,25 @@ struct RaceDefinitionStruct
   RaceSegment Segments[5];
 };
 
-RaceDefinition* RaceDefinitionCreateTriathlon(float swimDistanceInKilometers, float bikeDistanceInKilometers, float runDistanceInKilometers)
+RaceDefinition* RaceDefinitionCreateTriathlon(Distance swimDistance, Distance bikeDistance, Distance runDistance)
 {
   RaceDefinition *race = malloc(sizeof(RaceDefinition));
   race->NumberOfSegments = 5;
 
   race->Segments[0].Type = RaceSegmentType_Swim;
-  race->Segments[0].DistanceInKilometers = swimDistanceInKilometers;
+  race->Segments[0].Distance = swimDistance;
 
   race->Segments[1].Type = RaceSegmentType_Transition;
-  race->Segments[1].DistanceInKilometers = 0;
+  race->Segments[1].Distance = DistanceZero;
 
   race->Segments[2].Type = RaceSegmentType_Bike;
-  race->Segments[2].DistanceInKilometers = bikeDistanceInKilometers;
+  race->Segments[2].Distance = bikeDistance;
 
   race->Segments[3].Type = RaceSegmentType_Transition;
-  race->Segments[3].DistanceInKilometers = 0;
+  race->Segments[3].Distance = DistanceZero;
 
   race->Segments[4].Type = RaceSegmentType_Run;
-  race->Segments[4].DistanceInKilometers = runDistanceInKilometers;
+  race->Segments[4].Distance = runDistance;
 
   return race;
 }

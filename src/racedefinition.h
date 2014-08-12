@@ -1,5 +1,5 @@
-#ifndef RACEDEFINITION
-#define RACEDEFINITION
+#pragma once
+#include "distance.h"
 
 typedef enum
 {
@@ -12,15 +12,13 @@ typedef enum
 typedef struct
 {
   RaceSegmentType Type;
-  float DistanceInKilometers;
+  Distance Distance;
 } RaceSegment;
 
 struct RaceDefinitionStruct;
 typedef struct RaceDefinitionStruct RaceDefinition;
 
-RaceDefinition* RaceDefinitionCreateTriathlon(float swimDistanceInKilometers, float bikeDistanceInKilometers, float runDistanceInKilometers);
+RaceDefinition* RaceDefinitionCreateTriathlon(Distance swimDistance, Distance bikeDistance, Distance runDistance);
 void RaceDefinitionDestroy(RaceDefinition *race);
 int RaceDefinitionGetNumberOfSegments(RaceDefinition *race);
 RaceSegment* RaceDefinitionGetRaceSegment(RaceDefinition *race, int segmentNumber);
-
-#endif
