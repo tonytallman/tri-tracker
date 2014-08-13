@@ -1,5 +1,6 @@
 #ifndef SPLASHSCREEN
 #define SPLASHSCREEN
+
 #include <pebble.h>
 #include "common.h"
   

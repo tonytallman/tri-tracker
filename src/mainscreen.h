@@ -1,5 +1,6 @@
 #ifndef MAINSCREEN
 #define MAINSCREEN
+
 #include <pebble.h>
 #include "common.h"
 

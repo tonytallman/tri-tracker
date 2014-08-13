@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DISTANCE
+#define DISTANCE
 
 typedef enum
 {
@@ -13,4 +14,4 @@ typedef struct
   DistanceUnits Units;
 } Distance;
 
-const Distance DistanceZero = {.Value = 0, .Units = 0};
+#endif

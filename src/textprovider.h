@@ -11,6 +11,11 @@ typedef enum {
   TEXT_HistoryMenuItemSubtitle,
   TEXT_AboutMenuItemTitle,
   TEXT_AboutMenuItemSubtitle,
+  TEXT_SprintTriathlon,
+  TEXT_OlympicTriathlon,
+  TEXT_HalfIronmanTriathlon,
+  TEXT_IronmanTriathlon,
+  TEXT_SelectRaceDistance,
   TEXT_ComingSoon
 } TextID;
 

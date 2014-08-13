@@ -30,7 +30,22 @@ char *GetText(TextID textID)
 
     case TEXT_AboutMenuItemSubtitle:
       return NULL;
-    
+
+    case TEXT_SprintTriathlon:
+      return "Sprint Triathlon";
+
+    case TEXT_OlympicTriathlon:
+      return "Olympic Triathlon";
+
+    case TEXT_HalfIronmanTriathlon:
+      return "Half Ironman Triathlon";
+
+    case TEXT_IronmanTriathlon:
+      return "Ironman Triathlon";
+
+    case TEXT_SelectRaceDistance:
+      return "select race distance!";
+
     case TEXT_ComingSoon:
       return "coming soon!";
 

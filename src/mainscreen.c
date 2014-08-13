@@ -6,8 +6,8 @@ MenuLayer *_mainScreenMenuLayer;
 typedef enum
 {
   MainScreenMenuItemStartRace = 0,
-  MainScreenMenuItemSettings,
   MainScreenMenuItemHistory,
+  MainScreenMenuItemSettings,
   MainScreenMenuItemAbout,
   MainScreenMenuItemCount
 } MainScreenMenuItem;

@@ -1,5 +1,6 @@
 #ifndef THEME
 #define THEME
+
 #include <pebble.h>
 
 GFont* GetHeadingFont();
